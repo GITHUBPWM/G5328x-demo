@@ -7,9 +7,11 @@ import Vuex from 'vuex'
 import store from "./store";
 
 
+
 Vue.use(Vuex);
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
+
 
 /* eslint-disable no-new */
 new Vue({
