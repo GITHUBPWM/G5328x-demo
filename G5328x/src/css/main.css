@@ -55,10 +55,53 @@ button,input{
   display: inline-block;
   width: 120px;
   height: 100%;
-  text-align: center;
   border-left: 1px solid #e8e8e8;
   color: rgba(0, 0, 0, 0.65);
 }
+<<<<<<< HEAD
 
 
+=======
+.header-bt1{
+  padding-left: 20px;
+}
+.header-bt2{
+  padding-right: 20px;
+}
+.header-bt1:after{
+  position: absolute;
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+  content: "";
+  background: url("../assets/save.png") no-repeat;
+  margin-left: -75px;
+}
+.header-bt2:after{
+  position: absolute;
+  display: inline-block;
+  height: 15px;
+  width: 15px;
+  content: "";
+  background: url("../assets/down.png") no-repeat;
+  margin-left: 7px;
+}
+
+.menu-div{
+  width: 100%;
+  line-height:50px;
+  text-align: center;
+  background-color: black;
+  color: #fff;
+  font-size: 15px;
+}
+.child-menu{
+  height: 50px;
+}
+.container{
+  height:100%;
+  width: 100%;
+  padding-top: 100px;
+}
+>>>>>>> f15d74d4f8f6ed3215fc51f0ff84976a7e3234b7
 
