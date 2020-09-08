@@ -5,6 +5,6 @@
 </template>
 <script>
   export default{
-      name:"manageMaintain"
+      name:"Tools"
   }
 </script>

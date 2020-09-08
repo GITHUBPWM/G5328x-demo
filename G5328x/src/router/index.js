@@ -1,16 +1,14 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import Summary from "../views/Summary.vue";
-import PortManage from "../views/PortManage.vue";
-import Vlan from "../views/Vlan.vue";
-import ChangeSetting from "../views/ChangeSetting.vue";
-import RouterSetting from  "../views/RouterSetting.vue"
-import Visual from "../views/Visual.vue";
-import Qos from "../views/Qos.vue";
-import NetSafe from "../views/NetSafe.vue";
-import DevManage from "../views/DevManage.vue";
-import ManageMaintain from "../views/ManageMaintain.vue";
+import Summary from "../views/commonFunc/Summary.vue";
+import Tools from "../views/commonFunc/Tools.vue";
+import GlobalMap from "../views/visualization/GlobalMap.vue";
+import Snoop from "../views/switch/Snoop.vue";
+import Queue from "../views/qos/Queue.vue"
+import Index from "../views/Index.vue";
+
+
 
 
 
@@ -28,48 +26,61 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Summary',
-      component: Summary
-    }, {
-      path: '/summary',
-      name: 'Summary',
-      component: Summary
-    },{
-      path: '/portManage',
-      name: 'PortManage',
-      component: PortManage
-    },{
-      path: '/vlan',
-      name: 'Vlan',
-      component: Vlan
-    },{
-      path: '/changeSetting',
-      name: 'ChangeSetting',
-      component: ChangeSetting
-    },{
-      path: '/routerSetting',
-      name: 'RouterSetting',
-      component: RouterSetting
-    },{
-      path: '/visual',
-      name: 'Visual',
-      component: Visual
-    },{
-      path: '/qos',
-      name: 'Qos',
-      component: Qos
-    },{
-      path: '/netSafe',
-      name: 'NetSafe',
-      component: NetSafe
-    },{
-      path: '/devManage',
-      name: 'DevManage',
-      component: DevManage
-    },{
-      path: '/manageMaintain',
-      name: 'ManageMaintain',
-      component: ManageMaintain
+      name: 'index',
+      component: Index,
+      redirect:'/commonFunc',
+      children:[
+        {
+          path:'commonFunc',
+          name:'commonFunc',
+          redirect:'/commonFunc/summary',
+          children:[
+            {
+              path:'summary',
+              name:'summary',
+              component: Summary
+            },{
+              path:'tools',
+              name:'tools',
+              component: Tools
+            },
+          ]
+        },{
+          path:'switch',
+          name: 'switch',
+          redirect:'/switch/snoop',
+          children:[
+            {
+              path:'snoop',
+              name:'snoop',
+              component:Snoop
+            }]
+        },{
+          path:'qos',
+          name: 'qos',
+          redirect: '/qos/queue',
+          children: [
+            {
+              path:'queue',
+              name:'queue',
+              component:Queue
+            }
+          ]
+        },{
+          path:'visualization',
+          name: 'visualization',
+          redirect: '/visualization/globalMap',
+          children: [
+            {
+              path:'globalMap',
+              name:'globalMap',
+              components:{
+                content:GlobalMap
+              }
+            }
+          ]
+        }
+      ]
     }
   ]
 })
