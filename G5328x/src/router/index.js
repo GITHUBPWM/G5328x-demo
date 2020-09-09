@@ -8,12 +8,6 @@ import Snoop from "../views/switch/Snoop.vue";
 import Queue from "../views/qos/Queue.vue"
 import Index from "../views/Index.vue";
 
-
-
-
-
-
-
 //解决vue-route 3.0版本以上重复路由时报错的问题
 const originalPush = Router.prototype.push;
 Router.prototype.push = function push(location) {
@@ -31,52 +25,81 @@ export default new Router({
       redirect:'/commonFunc',
       children:[
         {
-          path:'commonFunc',
+          path:'/commonFunc',
           name:'commonFunc',
           redirect:'/commonFunc/summary',
+          meta:{
+            label:"常用功能",
+            icon:"iconfont icon-fangzi"
+          },
           children:[
             {
               path:'summary',
               name:'summary',
-              component: Summary
+              component: Summary,
+              meta:{
+                label:"系统概览"
+              },
             },{
               path:'tools',
               name:'tools',
-              component: Tools
+              component: Tools,
+              meta:{
+                label:"管理维护"
+              },
             },
           ]
         },{
-          path:'switch',
+          path:'/switch',
           name: 'switch',
           redirect:'/switch/snoop',
+          meta: {
+            label:"交换设置",
+            icon:"iconfont icon-shaixuan",
+          },
           children:[
             {
               path:'snoop',
               name:'snoop',
-              component:Snoop
+              component:Snoop,
+              meta:{
+                label:"HDCP侦听"
+              },
             }]
         },{
-          path:'qos',
+          path:'/qos',
           name: 'qos',
           redirect: '/qos/queue',
+          meta: {
+            label:"Qos策略",
+            icon: "iconfont icon-diejia"
+          },
           children: [
             {
               path:'queue',
               name:'queue',
-              component:Queue
+              component:Queue,
+              meta:{
+                label:"QoS策略"
+              },
             }
           ]
         },{
-          path:'visualization',
+          path:'/visualization',
           name: 'visualization',
           redirect: '/visualization/globalMap',
+          meta: {
+            label:"可视化",
+            icon:"iconfont icon-shezhizuobiao",
+          },
           children: [
             {
               path:'globalMap',
               name:'globalMap',
-              components:{
-                content:GlobalMap
-              }
+              component: GlobalMap,
+              meta:{
+                label:"全局地图"
+              },
             }
           ]
         }
