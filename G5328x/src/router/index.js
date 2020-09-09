@@ -6,6 +6,8 @@ import Tools from "../views/commonFunc/Tools.vue";
 import GlobalMap from "../views/visualization/GlobalMap.vue";
 import Snoop from "../views/switch/Snoop.vue";
 import Queue from "../views/qos/Queue.vue"
+import QosIndex from "../views/qos/QosIndex.vue"
+import DSCP from "../views/qos/DSCP.vue"
 import Index from "../views/Index.vue";
 
 //解决vue-route 3.0版本以上重复路由时报错的问题
@@ -67,24 +69,6 @@ export default new Router({
               },
             }]
         },{
-          path:'/qos',
-          name: 'qos',
-          redirect: '/qos/queue',
-          meta: {
-            label:"Qos策略",
-            icon: "iconfont icon-diejia"
-          },
-          children: [
-            {
-              path:'queue',
-              name:'queue',
-              component:Queue,
-              meta:{
-                label:"QoS策略"
-              },
-            }
-          ]
-        },{
           path:'/visualization',
           name: 'visualization',
           redirect: '/visualization/globalMap',
@@ -99,6 +83,32 @@ export default new Router({
               component: GlobalMap,
               meta:{
                 label:"全局地图"
+              },
+            }
+          ]
+        },{
+          path:'/qos',
+          name: 'qos',
+          redirect: '/qos/queue',
+          component:QosIndex,
+          meta: {
+            label:"Qos策略",
+            icon: "iconfont icon-diejia"
+          },
+          children: [
+            {
+              path:'queue',
+              name:'queue',
+              component:Queue,
+              meta:{
+                label:"QoS策略"
+              },
+            }, {
+              path:'dscp',
+              name:'dscp',
+              component:DSCP,
+              meta:{
+                label:"DSCP"
               },
             }
           ]

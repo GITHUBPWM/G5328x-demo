@@ -16,7 +16,9 @@
         <button class="header-bt-box header-bt1">保存配置</button>
       </div>
       <div class="container">
-        <router-view></router-view>
+        <router-view>
+
+        </router-view>
       </div>
     </div>
   </div>
