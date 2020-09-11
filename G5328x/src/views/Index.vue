@@ -2,10 +2,10 @@
   <div class="box">
     <div class="left-box">
       <div class="menu-logo"></div>
-      <router-link v-for="(item , aindex) in routes" class="menu-div" :to="item.path" :class="{before:item.component==null}">
+      <router-link v-for="(item , aindex) in routes" class="menu-div" :to="item.path" :class="{before:item.path!=='/qos'}">
         <i :class="item.meta.icon"></i>
-        <div>{{item.meta.label}}</div>
-        <router-link v-if="item.component==null" v-for="innerItem in childRoutes(aindex)"  class="child-menu" :class="{open:$route.path.includes(item.path)}" :to="innerItem.path">{{innerItem.meta.label}}</router-link>
+        <div class="menu-label">{{item.meta.label}}</div>
+        <router-link v-if="item.path!=='/qos'" v-for="innerItem in childRoutes(aindex)"  class="child-menu" :class="{open:$route.path.includes(item.path)}" :to="innerItem.path">{{innerItem.meta.label}}</router-link>
       </router-link>
 
     </div>
@@ -15,6 +15,7 @@
         <button class="header-bt-box header-bt2">[W9*f2!</button>
         <button class="header-bt-box header-bt1">保存配置</button>
       </div>
+<!--      <i class="iconfont icon-icon-"></i>-->
       <div class="container"><router-view></router-view></div>
       <div class="right-foot">
         <a href="https://ip-com.com.cn/default.html">官网：ip-com.com.cn</a>

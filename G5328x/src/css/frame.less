@@ -26,7 +26,7 @@
   background: url("../assets/menu-logo.png") no-repeat;
 }
 
-//菜单栏样式
+//--------------------菜单栏样式
 .menu-div{
   position: relative;
   width: 100%;
@@ -43,7 +43,10 @@
     z-index: 99;
   }
 }
-
+.menu-label{
+  padding-left: 80px;
+  text-align: left;
+}
 .child-menu{
   color: rgba(255, 255, 255, 0.65);
   height: 0;
@@ -85,6 +88,7 @@
 }
 .router-link-active{
   color: #fff;
+  background-color: #d82228;
   div{
     background-color: #d82228;
   }
@@ -94,9 +98,9 @@
     background-color: #000 ;
   }
 }
-.router-link-exact-active{
-  background-color: #d82228;
-}
+//.router-link-exact-active{
+//  background-color: #d82228;
+//}
 
 .menu-div:hover,.child-menu:hover{
   color: #fff;
@@ -121,6 +125,7 @@
   box-shadow: 0 1px 4px 0 rgba(0, 21, 41,0.12)
 }
 .header-bt-box{
+  border: none;
   float: right;
   display: inline-block;
   width: 120px;
@@ -159,14 +164,10 @@
 }
 
 .right-foot{
-  position: absolute;
-  width: 100%;
-  bottom: 0;
-  height: 56px;
-  line-height: 56px;
   font-size: 14px;
   color: rgba(0, 0, 0, 0.4);
   text-align: center;
+  padding: 20px 0;
   a{
    color: rgba(0, 0, 0, 0.4); ;
   };
@@ -175,4 +176,19 @@
   }
 }
 
+.table-form{
+  font-size: 14px;
+  width: 100%;
+}
+.table-head{
+  background: #f3f3f3;
+  height: 48px;
+  line-height: 48px;
+  color: rgba(0, 0, 0, 0.65);
+}
+.table-body{
 
+}
+.table-foot{
+
+}

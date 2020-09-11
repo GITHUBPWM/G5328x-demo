@@ -1,5 +1,7 @@
 <template>
-
+  <div>
+    snoop
+  </div>
 </template>
 
 <script>

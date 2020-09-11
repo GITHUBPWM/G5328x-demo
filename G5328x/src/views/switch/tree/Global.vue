@@ -1,12 +1,11 @@
 <template>
-  <div style="min-height: 7">
-
-  </div>
+<div>
+</div>
 </template>
 
 <script>
     export default {
-        name: "Queue",
+        name: "Global"
     }
 </script>
 

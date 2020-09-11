@@ -23,7 +23,6 @@ export default {
   }
   button,input{
     background: none;
-    border: none;
     outline: none;
   }
   a{text-decoration:none;}
