@@ -9,6 +9,11 @@
   export default {
         name: "QosIndex",
     components: {ThirdMenu},
+
+
+    mounted() {
+      this.common.getActiveRect(document,this) ;
+    }
   }
 </script>
 

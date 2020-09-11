@@ -7,8 +7,10 @@
 
 <script>
     export default {
-        name: "GlobalMap"
+        name: "GlobalMap",
+
     }
+
 </script>
 
 <style scoped>

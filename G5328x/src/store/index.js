@@ -32,6 +32,11 @@ const store = new Vuex.Store({
         });
 
       }
+    },
+
+
+    getWLL(context,select){
+      console.log(select);
     }
 
 

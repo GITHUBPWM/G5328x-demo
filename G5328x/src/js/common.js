@@ -20,18 +20,17 @@ export  default {
      }
   },
 
+  /*获取当前选中路由的下划线div的宽度和位置，实现点击路由左右滑动效果*/
   getActiveRect: function(document,that){
     if(document.querySelector(".router-link-exact-active")){
-
         that.$nextTick(()=>{
-          let width = parseInt(document.querySelector(".router-link-exact-active").getBoundingClientRect().width);
-          let boxLeft =  parseInt(document.querySelector(".third-title-box").getBoundingClientRect().left);
-          let left = parseInt(document.querySelector(".router-link-exact-active").getBoundingClientRect().left)-boxLeft;
-
+          let width = document.querySelector(".router-link-exact-active").getBoundingClientRect().width;
+          let boxLeft =  document.querySelector(".third-title-box").getBoundingClientRect().left;
+          let left = document.querySelector(".router-link-exact-active").getBoundingClientRect().left-boxLeft;
+          that.$store.dispatch('getWLL',{document:document,width:width});
         })
-
-
     }
+
   }
 
 
