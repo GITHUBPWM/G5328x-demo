@@ -26,10 +26,8 @@
 </template>
 
 <script>
-    import DSCP from "./qos/DSCP";
     export default {
         name: "Index",
-      components: {DSCP},
       data(){
           return{
             showMenu:0,

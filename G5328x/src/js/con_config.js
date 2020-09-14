@@ -1,5 +1,5 @@
 const devIconCfg ={
-0:{
-
-}
-}
+  0:{
+    iconClass:'',
+  }
+};
