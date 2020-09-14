@@ -23,12 +23,17 @@ export  default {
   /*获取当前选中路由的下划线div的宽度和位置，实现点击路由左右滑动效果*/
   getActiveRect: function(document,that){
     if(document.querySelector(".router-link-exact-active")){
+      new Promise((resolve, reject)=>{
         that.$nextTick(()=>{
           let width = document.querySelector(".router-link-exact-active").getBoundingClientRect().width;
           let boxLeft =  document.querySelector(".third-title-box").getBoundingClientRect().left;
           let left = document.querySelector(".router-link-exact-active").getBoundingClientRect().left-boxLeft;
-          that.$store.dispatch('getWLL',{document:document,width:width});
+          resolve({width:width, left:left});
+          console.log(that.$route);
         })
+      }).then((res)=>{
+        that.$store.dispatch('getActiveRect', res).then();
+      })
     }
 
   }

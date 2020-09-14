@@ -19,26 +19,8 @@ const store = new Vuex.Store({
 
     /*获取当前选中路由的下划线div的宽度和位置，实现点击路由左右滑动效果*/
     getActiveRect(context,select){
-      if(document.querySelector(".router-link-exact-active")){
-        new Promise((resolve,reject)=>{
-          select.that.$nextTick(()=>{
-            let width = parseInt(document.querySelector(".router-link-exact-active").getBoundingClientRect().width);
-            let boxLeft =  parseInt(document.querySelector(".third-title-box").getBoundingClientRect().left);
-            let left = parseInt(document.querySelector(".router-link-exact-active").getBoundingClientRect().left)-boxLeft;
-            resolve({width:width,left:left});
-          })
-        }).then((res)=>{
-          context.commit('setActiveRect',res);
-        });
-
-      }
+          context.commit('setActiveRect',select);
     },
-
-
-    getWLL(context,select){
-      console.log(select);
-    }
-
 
   },
   modules:{

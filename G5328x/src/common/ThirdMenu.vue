@@ -27,14 +27,14 @@
         },
 
         methods:{
-          getWL (){
-            this.$store.dispatch('getActiveRect',{document:document,that:this});
+          getWL(){
+            this.common.getActiveRect(document,this) ;
           },
 
         },
         mounted() {
-
-          this.$store.dispatch('getActiveRect',{document:document,that:this});
+          // this.$store.dispatch('getActiveRect',{document:document,that:this});
+          this.common.getActiveRect(document,this) ;
         }
     }
 </script>

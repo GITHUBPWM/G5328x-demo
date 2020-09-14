@@ -6,7 +6,7 @@ import Tools from "../views/commonFunc/Tools.vue";
 import QVlan from "../views/commonFunc/vlan/QVlan.vue";
 import Member from "../views/commonFunc/vlan/Member.vue";
 import GlobalMap from "../views/visualization/GlobalMap.vue";
-import DeviceList from "../views/visualization/GlobalMap.vue";
+import DeviceList from "../views/visualization/DeviceList.vue";
 import Snoop from "../views/switch/Snoop.vue";
 import Instance from "../views/switch/tree/Instance.vue";
 import Global from "../views/switch/tree/Global.vue";
