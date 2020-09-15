@@ -1,22 +1,23 @@
 .box {
   height: 100%;
+  position: relative;
 }
 .left-box {
   position: absolute;
   top: 0;
   left: 0;
-  height: 100%;
+  bottom: 0;
   width: 226px;
   background: #000;
   font-size: 15px;
-  min-height: 600px;
 }
 .right-box {
   position: relative;
   margin-left: 226px;
-  height: 100%;
   background: #f2f2f2;
   min-width: 1214px;
+  height: 100%;
+  overflow-y: scroll;
 }
 .menu-logo {
   width: 226px;
@@ -151,6 +152,7 @@
   padding: 80px 24px 0;
 }
 .right-foot {
+  width: 100%;
   font-size: 14px;
   color: rgba(0, 0, 0, 0.4);
   text-align: center;

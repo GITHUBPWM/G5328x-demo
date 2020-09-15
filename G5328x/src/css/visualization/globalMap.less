@@ -1,3 +1,22 @@
+@font-face {
+  font-family: 'iconfont';  /* project id 2056052 */
+  src: url('//at.alicdn.com/t/font_2056052_e3wuda12yao.eot');
+  src: url('//at.alicdn.com/t/font_2056052_e3wuda12yao.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_2056052_e3wuda12yao.woff2') format('woff2'),
+  url('//at.alicdn.com/t/font_2056052_e3wuda12yao.woff') format('woff'),
+  url('//at.alicdn.com/t/font_2056052_e3wuda12yao.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_2056052_e3wuda12yao.svg#iconfont') format('svg');
+}
+.iconfont{
+  font-family:"iconfont" !important;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-stroke-width: 0.2px;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+
 .dev-list-box{
   position: relative;
   width: 100%;
@@ -13,15 +32,15 @@
   width: 220px;
   height: 100px;
   float: left;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  i{
+    font-size: 30px;
+    color: #D82228;
+  }
 }
-.dev-info{
-  margin: 0 auto;
-  /*i{*/
-  /*height: 40px;*/
-  /*width: 40px;*/
-  /*float: left;*/
-  /*}*/
-}
+
 .dev-status{
   margin-top: 24px;
   width: 100%;
@@ -34,15 +53,49 @@
 }
 .dev-name{
   font-size: 16px;
+  color: rgba(0, 0, 0, 0.85);
 }
 .dev-online{
   font-size: 12px;
+  color: rgba(0, 0, 0, 0.65);
+  margin-top:2px
+}
+.dev-num{
+  .dev-name;
+  font-weight: bold;
 }
 .close{
   position: absolute;
-  margin: 0 auto;
+  text-align: center;
   bottom: 0;
-  height: 20px;
-  width: 20px;
-  background: red;
+  width: 48px;
+  height: 16px;
+  background: rgba(0, 0, 0, 0.06);
+  border-radius: 2px 2px 0px 0px;
+  border: 1px solid #E8E8E8;
+  left: 50%;
+  margin-left: -24px;
+  font-size: 22px;
+  line-height: 16px;
+  color: #c2c0c0;
+  &:after{
+    content: "\e603";
+  }
+}
+.open{
+  overflow: visible;
+  height: auto;
+}
+.rotate {
+  transform:rotate(180deg);
+  -ms-transform:rotate(180deg); 	/* IE 9 */
+  -moz-transform:rotate(180deg); 	/* Firefox */
+  -webkit-transform:rotate(180deg); /* Safari 和 Chrome */
+  -o-transform:rotate(180deg); 	/* Opera */
+}
+
+
+.status-header{
+  height: 40px;
+  background: rgba(0, 0, 0, 0.04);
 }

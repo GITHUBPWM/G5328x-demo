@@ -1,7 +1,7 @@
 .main-content {
-  padding: 22px 32px 0;
+  padding: 22px 32px 12px;
   background-color: #fff;
-  min-height: 786px;
+  min-height: 798px;
   box-sizing: border-box;
 }
 .third-title-box {
