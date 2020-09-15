@@ -14,7 +14,6 @@
 
 	MSG.extend = function (obj) {
 		var name;
-
 		for (name in obj) {
 			if (obj.hasOwnProperty(name)) {
 				MSG[name] = obj[name];
@@ -26,8 +25,10 @@
 	/*********翻译配置***********/
 	//配置翻译支持的所有语言，如果不支持某种语言，则以默认语言显示
 	//使用前请添加所有已支持的语言到此数组中
-    var configLang = top.CONFIG_MULTI_LANGUAGE_SORFWARE;
-    var lang = configLang.split(",");
+    //ppppppppppppppppppppppppppp var configLang = top.CONFIG_MULTI_LANGUAGE_SORFWARE;
+  var configLang = "cn,en";
+  var lang = configLang.split(",");
+
 	b28Cfg.supportLang = lang;
     // b28Cfg.supportLang = ["en","cn","zh","tr","de","ko","fr","hu","it","pl","ro","ru","pt-BR","cs","pt","es","es-419","uk","nl"];
 	b28Cfg.defaultLang = 'en';
@@ -63,6 +64,7 @@
 
 		//获取语言文件相对路径
 		js = document.scripts,
+
 		langPath = js[js.length-1].src.substring(0,js[js.length-1].src.lastIndexOf("/")+1),
 
 		// JSON RegExp
@@ -422,6 +424,7 @@
 			}
 			return lang;
 		};
+
 		this.getLang = function () {
 			var special = {
 					"zh": "cn",
@@ -672,6 +675,6 @@
 		return Butterlate.getFormatText(key, replacements);
 	};
 	win.Butterlate.loadScript = loadScript;
-	B.setLang('brpt');
+	B.setLang('cn');
 
 }(window, document));

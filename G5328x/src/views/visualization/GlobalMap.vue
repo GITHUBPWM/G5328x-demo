@@ -17,13 +17,16 @@
       <div v-show="showBtn" class="close iconfont" :class="{rotate:isOPen}" @click="isOPen=!isOPen"></div>
     </div>
     <div class="dev-status">
-      <div class="status-header"></div>
+      <div class="status-header">
+        {{aaa}}
+      </div>
     </div>
   </div>
 </template>
 
 <script>
   import elementResizeDetectorMaker from 'element-resize-detector';
+  import b28 from '../../lang/b28n_async'
 
   export default{
         name: "GlobalMap",
@@ -32,7 +35,8 @@
             devLists:null,
             showBtn:false,
             isOPen:false,
-            TopoDeviceListInfo:[]
+            TopoDeviceListInfo:[],
+            aaa:""
           }
         },
         computed:{
@@ -58,7 +62,11 @@
 
           this.$axios.get('/goform/getTopoDeviceStatistics').then((res)=>{this.devLists = res.data;});
           this.$axios.get('/goform/getTopoDeviceListInfo').then((res)=>{this.TopoDeviceListInfo = res.data;});
-
+          this.aaa = window._("Switch");
+          window.console.log(window._);
+          window.console.log(document);
+          window.console.log("-------------------------")
+          window.console.log(this.con_config.devIconCfg[2].name);
         }
     }
 

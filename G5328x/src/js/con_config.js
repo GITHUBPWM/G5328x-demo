@@ -6,7 +6,7 @@ const devIconCfg ={
   },
   2:{
     iconClass:'icon-jiaohuanji',
-    name:"交换机"
+    name:_("Switch")
   },
   3:{
     iconClass:'icon-wwuxianAP',
