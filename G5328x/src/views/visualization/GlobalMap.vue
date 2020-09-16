@@ -27,7 +27,7 @@
 <script>
   import elementResizeDetectorMaker from 'element-resize-detector';
   import b28 from '../../lang/b28n_async'
-
+  B.setTextDomain("translate","cn");
   export default{
         name: "GlobalMap",
         data(){

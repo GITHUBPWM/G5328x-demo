@@ -8,10 +8,10 @@ import store from "./store"
 import common from './js/common'
 import con_config from './js/con_config'
 import axios from 'axios'
-import less from 'less'
-
-
-Vue.use(less);
+// import less from 'less'
+//
+//
+// Vue.use(less);
 
 
 Vue.use(Vuex);

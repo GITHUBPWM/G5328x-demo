@@ -65,7 +65,8 @@
 		//获取语言文件相对路径
 		js = document.scripts,
 
-		langPath = js[js.length-1].src.substring(0,js[js.length-1].src.lastIndexOf("/")+1),
+		// langPath = js[js.length-1].src.substring(0,js[js.length-1].src.lastIndexOf("/")+1)+'src/lang/',
+		langPath = js[js.length-1].src.substring(0,js[js.length-1].src.lastIndexOf("/")+1)+'src/lang/',
 
 		// JSON RegExp
 		rvalidchars = /^[\],:{}\s]*$/,
@@ -354,7 +355,8 @@
 
 	loadJSON = function (url, callBack) {
 		var request = createXHR();
-		request.open("GET", url + "?" + Math.random(), false);
+		// request.open("GET", url + "?" + Math.random(), false);
+		request.open("GET", url , false);
 		//request.setRequestHeader("If-Modified-Since", "1");
 		//request.setRequestHeader("Accept", "application/json, text/javascript, */*; q=0.01");
 		request.send(null);
@@ -467,6 +469,7 @@
 		this.getURL = function (domain) {
 			return langPath + this.lang + "/" + domain + "." + this.options.fileType + "?" + b28Cfg.dateStr;
 		};
+
 		this.setTextDomain = function (domain, lang, callBack) {
 			var i,
 				domainLen,
@@ -677,4 +680,7 @@
 	win.Butterlate.loadScript = loadScript;
 	B.setLang('cn');
 
+  var request = createXHR();
+  // request.open("GET", url + "?" + Math.random(), false);
+  request.open("GET", "http://localhost:8080/translate.json?3453" , false);
 }(window, document));
