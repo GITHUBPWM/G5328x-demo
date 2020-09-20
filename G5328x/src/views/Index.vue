@@ -12,6 +12,7 @@
     <div class="right-box">
       <div class="right-header">
         <span>设备型号：G5328XV1.0</span>
+        <select class="header-bt-box header-bt2" id="select-lang"></select>
         <button class="header-bt-box header-bt2">[W9*f2!</button>
         <button class="header-bt-box header-bt1">保存配置</button>
       </div>
@@ -48,8 +49,12 @@
       methods:{
 
       },
+      beforeMount(){
+        setSupportLang("cn,en,zh");//不能放在mounted里，必须放在页面dom渲染之前，不然页面会闪，因为这个操作会reload页面。
+      },
       mounted() {
         this.$router.push('/');
+        B.setTextDomain("translate");//setTextDomain的时候不传lang过去，就会根据cookie里设置的blanguage值来翻译页面。
       }
     }
 </script>

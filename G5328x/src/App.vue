@@ -3,7 +3,7 @@
 </template>
 
 <script>
-
+import b28 from '../static/lang/b28n_async'
 export default {
   name: 'App'
 }

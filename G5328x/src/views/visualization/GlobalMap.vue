@@ -26,8 +26,8 @@
 
 <script>
   import elementResizeDetectorMaker from 'element-resize-detector';
-  import b28 from '../../lang/b28n_async'
-  B.setTextDomain("translate","cn");
+//  import b28 from '../../lang/b28n_async'
+
   export default{
         name: "GlobalMap",
         data(){
@@ -62,11 +62,7 @@
 
           this.$axios.get('/goform/getTopoDeviceStatistics').then((res)=>{this.devLists = res.data;});
           this.$axios.get('/goform/getTopoDeviceListInfo').then((res)=>{this.TopoDeviceListInfo = res.data;});
-          this.aaa = window._("Switch");
-          window.console.log(window._);
-          window.console.log(document);
-          window.console.log("-------------------------")
-          window.console.log(this.con_config.devIconCfg[2].name);
+
         }
     }
 
