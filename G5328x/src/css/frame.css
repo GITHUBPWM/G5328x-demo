@@ -62,6 +62,7 @@
   line-height: 47px;
 }
 .router-link-active:before {
+  transition: all 0.5s;
   transform-origin: center;
   transform: rotate(180deg);
   -ms-transform: rotate(180deg);
@@ -123,30 +124,15 @@
   height: 100%;
   border-left: 1px solid #e8e8e8;
   color: rgba(0, 0, 0, 0.65);
+  text-align: center;
 }
-.header-bt1 {
+.icon-baocun {
+  font-size: 20px;
+  float: left;
+  margin-left: 20px;
+}
+#select-lang {
   padding-left: 20px;
-}
-.header-bt2 {
-  padding-right: 20px;
-}
-.header-bt1:after {
-  position: absolute;
-  display: inline-block;
-  height: 20px;
-  width: 20px;
-  content: "";
-  background: url("../assets/save.png") no-repeat;
-  margin-left: -75px;
-}
-.header-bt2:after {
-  position: absolute;
-  display: inline-block;
-  height: 15px;
-  width: 15px;
-  content: "";
-  background: url("../assets/down.png") no-repeat;
-  margin-left: 7px;
 }
 .container {
   padding: 80px 24px 0;
@@ -173,5 +159,12 @@
   height: 48px;
   line-height: 48px;
   color: rgba(0, 0, 0, 0.65);
+}
+.icon-bangzhu-xian {
+  position: absolute;
+  top: 106px;
+  right: 56px;
+  font-size: 20px;
+  color: #a6a6a6;
 }
 /*# sourceMappingURL=frame.css.map */

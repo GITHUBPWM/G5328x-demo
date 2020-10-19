@@ -12,12 +12,18 @@
     <div class="right-box">
       <div class="right-header">
         <span>设备型号：G5328XV1.0</span>
-        <select class="header-bt-box header-bt2" id="select-lang"></select>
-        <button class="header-bt-box header-bt2">[W9*f2!</button>
-        <button class="header-bt-box header-bt1">保存配置</button>
+        <select class="header-bt-box" id="select-lang"></select>
+        <div class="header-bt-box">[W9*f2!</div>
+        <div class="header-bt-box">
+          <i class="iconfont icon-baocun"></i>
+          <span style="float: left">保存配置</span>
+        </div>
       </div>
 <!--      <i class="iconfont icon-icon-"></i>-->
-      <div class="container"><router-view></router-view></div>
+      <div class="container">
+        <router-view></router-view>
+        <i class="iconfont icon-bangzhu-xian"></i>
+      </div>
       <div class="right-foot">
         <a href="https://ip-com.com.cn/default.html">官网：ip-com.com.cn</a>
         <span>| ©2020 深圳市和为顺网络技术有限公司 | 服务热线：400-665-0066</span>
