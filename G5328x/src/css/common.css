@@ -61,10 +61,27 @@
   cursor: not-allowed;
   color: #a6a6a6;
 }
+.none {
+  display: none;
+}
 .form-button-group {
   text-align: right;
 }
-.icon-huadongxuanze-zuo {
-  font-size: 36px;
+.table-group {
+  width: 1100px;
+  margin-top: 30px;
+}
+.inner-table {
+  border-collapse: collapse;
+}
+.inner-table thead {
+  background-color: #F3F3F3;
+}
+.inner-table tr {
+  height: 48px;
+}
+.inner-table td {
+  text-align: center;
+  border: 1px solid #E8E8E8;
 }
 /*# sourceMappingURL=common.css.map */

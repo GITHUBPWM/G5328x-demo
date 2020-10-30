@@ -29,7 +29,6 @@ export  default {
           let boxLeft =  document.querySelector(".third-title-box").getBoundingClientRect().left;
           let left = document.querySelector(".router-link-exact-active").getBoundingClientRect().left-boxLeft;
           resolve({width:width, left:left});
-          console.log(that.$route);
         })
       }).then((res)=>{
         that.$store.dispatch('getActiveRect', res).then();

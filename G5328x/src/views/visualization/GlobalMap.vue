@@ -6,10 +6,12 @@
         <div class="dev-box"  v-for="(item,index) in devLists" >
             <i class="iconfont" :class="getIcon(index)"></i>
             <div class="info-box">
-              <div class="dev-num">{{item}}</div>
+              <div v-if="typeof (item) === 'object'">
+                <div class="dev-num-stu">在线：<span>{{item.online}}</span></div>
+                <div class="dev-num-stu">离线：<span>{{item.offline}}</span></div>
+              </div>
+              <div v-else class="dev-num">{{item}}</div>
               <div class="dev-name">{{con_config.devIconCfg[index].name}}</div>
-<!--              <div class="dev-online">在线 10</div>-->
-<!--              <div class="dev-online">离线 10</div>-->
             </div>
         </div>
         <div style="clear: left"></div>
@@ -48,12 +50,15 @@
         methods:{
           getIcon(item){
             return this.con_config.devIconCfg[item].iconClass;
-          }
+          },
+
 
         },
         mounted() {
 
           let that = this;
+
+          //监听元素大小变化，动态显示展开按钮
           let erd = elementResizeDetectorMaker();
           erd.listenTo(that.$refs.devContent,(element)=>{
             this.showBtn = element.offsetHeight > 100;

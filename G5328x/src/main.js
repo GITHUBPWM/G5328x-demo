@@ -8,6 +8,9 @@ import store from "./store"
 import common from './js/common'
 import con_config from './js/con_config'
 import axios from 'axios'
+import '@reasy-team/reasy-ui-vue/dist/styles.css';
+import ReasyUIVue from '@reasy-team/reasy-ui-vue';
+Vue.use(ReasyUIVue);
 // import less from 'less'
 //
 //
