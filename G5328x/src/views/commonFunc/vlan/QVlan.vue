@@ -2,8 +2,9 @@
   <div>
 
     <div class="form-button-group">
-      <button class="btn btn-title">添加</button>
-      <button class="btn disabled">删除</button>
+      <button class="btn btn-title"><i class="iconfont icon-tianjia"></i>添加</button>
+      <button class="btn disabled"><i class="iconfont icon-shanchu"></i></button>
+<!--      <v-button :title="'Add'" css="icon-add btn-primary"></v-button>-->
     </div>
     <v-table ref="table"  :tableOptions="tableData" @on-custom-comp="customCompFunc" :callback="afterUpdateTable"></v-table>
   </div>
@@ -49,7 +50,7 @@
         },
 
         afterUpdateTable(){
-          alert("更新表格");
+
         }
 
       },
@@ -63,6 +64,7 @@
     }
 </script>
 
-<style scoped>
+<style lang = "less" scoped>
+@import "../../../css/common.less";
 
 </style>
