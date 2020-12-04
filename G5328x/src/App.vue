@@ -24,6 +24,11 @@ export default {
     background: none;
     outline: none;
   }
+
+  button{
+    border: none;
+  }
+  
   a{text-decoration:none;}
   em{font-style:normal}
   li{list-style:none}

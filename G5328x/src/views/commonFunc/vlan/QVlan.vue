@@ -4,13 +4,17 @@
     <div class="form-button-group">
       <button class="btn btn-title"><i class="iconfont icon-tianjia"></i>添加</button>
       <button class="btn disabled"><i class="iconfont icon-shanchu"></i></button>
-<!--      <v-button :title="'Add'" css="icon-add btn-primary"></v-button>-->
     </div>
-    <v-table ref="table"  :tableOptions="tableData" @on-custom-comp="customCompFunc" :callback="afterUpdateTable"></v-table>
+    <v-table ref="table" 
+        :tableOptions="tableData" 
+        @on-custom-comp="customCompFunc" 
+        :callback="afterUpdateTable">
+    </v-table>
   </div>
 </template>
 
 <script>
+import OperateBtGroup from '../../../common/OperateBtGroup';
     export default {
       name: "QVlan",
       data(){
@@ -18,6 +22,7 @@
           tableData:{
             key: "qvlan",
             css: "",
+            selectBox: true,
             columns: [
               {
                 title: "VLAN ID",
@@ -37,15 +42,20 @@
               },
               {
                 title: "操作",
-                // componentName: "OperateBtGroup",
+                componentName: OperateBtGroup,
               }
             ]
           },
         }
       },
 
+      components:{
+        OperateBtGroup
+      },
+
       methods:{
-        customCompFunc(){
+        customCompFunc(data){
+          console.log(data)
 
         },
 

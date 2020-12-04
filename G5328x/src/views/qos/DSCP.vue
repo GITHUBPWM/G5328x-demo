@@ -6,7 +6,7 @@
       <span  @click="changeDscpEn">{{ dscpEnOn?'开启':'关闭'}}</span>
     </div>
     <div class="table-group">
-      <table v-for="o in 4" class="inner-table cos-priority">
+      <table v-for="o in 4" class="inner-table cos-priority" :key = o>
         <thead>
           <tr><td>DSCP值</td><td>Cos优先级</td></tr>
         </thead>

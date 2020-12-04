@@ -3,7 +3,7 @@
     <div class="content-header">{{$route.meta.label}}</div>
     <div class="dev-list-box" :class="{open:isOPen}">
       <div ref="devContent">
-        <div class="dev-box"  v-for="(item,index) in devLists" >
+        <div class="dev-box"  v-for="(item,index) in devLists" :key="index">
             <i class="iconfont" :class="getIcon(index)"></i>
             <div class="info-box">
               <div v-if="typeof (item) === 'object'">
