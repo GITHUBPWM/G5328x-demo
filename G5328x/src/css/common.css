@@ -43,11 +43,19 @@
   font-size: 16px;
   color: rgba(0, 0, 0, 0.65);
 }
+.operate-btn .iconfont {
+  font-size: 20px;
+  color: gray;
+}
 .btn {
   padding: 5px 13px;
   font-size: 14px;
   border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 2px;
+  height: 32px;
+}
+.btn .icon-shanchu:before {
+  font-size: 20px;
 }
 .btn-title {
   background: #d82228;
@@ -66,6 +74,10 @@
 }
 .form-button-group {
   text-align: right;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 10px 0 30px 0;
 }
 .table-group {
   width: 1100px;

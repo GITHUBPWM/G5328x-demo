@@ -6,7 +6,7 @@
         <i class="iconfont icon-guanbi"></i>
       </div>
       <!-- 提示确认框 -->
-      <div class="confirm-box" v-if="dialogCfg.type === 'comfirm'">
+      <div class="confirm-box" v-if="dialogCfg.type === 'confirm'">
           <div class="dialog-content">确定要删除选中项吗？</div>
       </div>
       <!-- 添加信息框 -->

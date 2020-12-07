@@ -21,7 +21,6 @@
           <span style="float: left">保存配置</span>
         </div>
       </div>
-<!--      <i class="iconfont icon-icon-"></i>-->
       <div class="container">
         <router-view></router-view>
         <i class="iconfont icon-bangzhu-xian"></i>
@@ -31,10 +30,12 @@
         <span>| ©2020 深圳市和为顺网络技术有限公司 | 服务热线：400-665-0066</span>
       </div>
     </div>
+    <my-dialog v-show="dialogCfg.show" :dialogCfg = "dialogCfg"></my-dialog>
   </div>
 </template>
 
 <script>
+  import {mapState} from 'vuex';
     export default {
         name: "Index",
       data(){
@@ -42,7 +43,9 @@
             showMenu:0,
           }
       },
+
       computed:{
+        ...mapState(["dialogCfg"]),
         routes(){
           return this.$router.options.routes[0].children;
         },

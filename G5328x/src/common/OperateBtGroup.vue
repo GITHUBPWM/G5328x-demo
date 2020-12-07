@@ -1,7 +1,7 @@
 <template>
     <div class="operate-btn">
-        <button><i class="iconfont icon-shanchu"></i></button>
         <button><i class="iconfont icon-bianji2"></i></button>
+        <button @click="$emit('on-custom-comp',{type:'delete'})"><i class="iconfont icon-shanchu"></i></button>
     </div>
 </template>
 <script>
@@ -12,7 +12,8 @@ export default {
         return {
             
         }
-    }
+    },
+
 }
 </script>
 

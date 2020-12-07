@@ -8,12 +8,22 @@ const store = new Vuex.Store({
     thirdTitles:[],
     thirdActiveLeft:0,
     thirdActiveWidth:0,
+    dialogCfg:{
+      show:false,
+      title:"",
+      type:"confirm",
+      handle:"",
+      opareteForm:[],
+
+    }
   },
   mutations:{
     setActiveRect(state,res){
       state.thirdActiveLeft = res.left +"px";
       state.thirdActiveWidth = res.width +"px";
-    }
+    },
+
+    
   },
   actions:{
 

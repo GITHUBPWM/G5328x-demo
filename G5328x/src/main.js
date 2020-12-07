@@ -10,6 +10,7 @@ import con_config from './js/con_config'
 import axios from 'axios'
 import '@reasy-team/reasy-ui-vue/dist/styles.css';
 import ReasyUIVue from '@reasy-team/reasy-ui-vue';
+import my_plugins from "./js/my_plugins"
 Vue.use(ReasyUIVue);
 // import less from 'less'
 //
@@ -18,6 +19,8 @@ Vue.use(ReasyUIVue);
 
 
 Vue.use(Vuex);
+Vue.use(my_plugins);
+
 
 Vue.config.productionTip = false;
 Vue.prototype.common = common;
