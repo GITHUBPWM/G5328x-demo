@@ -19,12 +19,16 @@ export default {
     /*min-height: 600px;*/
     /*min-width: 800px;*/
     font-family: "PingFang SC", "Microsoft Yahei", "Hiragino Sans GB", arial, sans-serif;
-    overflow: hidden;
   }
   button,input{
     background: none;
     outline: none;
   }
+
+  button{
+    border: none;
+  }
+  
   a{text-decoration:none;}
   em{font-style:normal}
   li{list-style:none}

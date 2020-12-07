@@ -2,10 +2,12 @@
   <div class="box">
     <div class="left-box">
       <div class="menu-logo"></div>
-      <router-link v-for="(item , aindex) in routes" class="menu-div" :to="item.path" :class="{before:item.path!=='/qos'}">
+      <router-link v-for="(item , aindex) in routes" class="menu-div" :to="item.path" :class="{before:item.path!=='/qos'}" :key="aindex">
         <i :class="item.meta.icon"></i>
         <div class="menu-label">{{item.meta.label}}</div>
-        <router-link v-if="item.path!=='/qos'" v-for="innerItem in childRoutes(aindex)"  class="child-menu" :class="{open:$route.path.includes(item.path)}" :to="innerItem.path">{{innerItem.meta.label}}</router-link>
+        <div v-if="item.path!=='/qos'">
+            <router-link  v-for="innerItem in childRoutes(aindex)"  class="child-menu" :class="{open:$route.path.includes(item.path)}" :to="innerItem.path">{{innerItem.meta.label}}</router-link>
+        </div>
       </router-link>
 
     </div>
