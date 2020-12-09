@@ -8,13 +8,14 @@ const store = new Vuex.Store({
     thirdTitles:[],
     thirdActiveLeft:0,
     thirdActiveWidth:0,
+    /* 弹框参数 */
     dialogCfg:{
       show:false,
       title:"",
       type:"confirm",
       handle:"",
       opareteForm:[],
-
+      defaultData:{}
     }
   },
   mutations:{
