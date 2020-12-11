@@ -12,6 +12,7 @@ export default {
   /*初始化css*/
   html{
     height: 100%;
+    overflow: hidden;
   }
   body,ol,ul,h1,h2,h3,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,button,input,textarea,select{margin:0;padding:0}
   body{
@@ -19,6 +20,8 @@ export default {
     /*min-height: 600px;*/
     /*min-width: 800px;*/
     font-family: "PingFang SC", "Microsoft Yahei", "Hiragino Sans GB", arial, sans-serif;
+    overflow: hidden;
+    overflow-x: auto;
   }
   button,input{
     background: none;

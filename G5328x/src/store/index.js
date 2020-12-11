@@ -16,13 +16,21 @@ const store = new Vuex.Store({
       handle:"",
       opareteForm:[],
       defaultData:{}
-    }
+    },
+    /* table行里的操作按钮 */
+    operateBts:"",
+
   },
   mutations:{
     setActiveRect(state,res){
       state.thirdActiveLeft = res.left +"px";
       state.thirdActiveWidth = res.width +"px";
     },
+
+    /* 给每行的按钮组件传值，显示具体哪些按钮（编辑、删除等） */
+    setOperateBts(state, res) {
+      state.operateBts = res;
+    }
 
     
   },

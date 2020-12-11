@@ -23,14 +23,15 @@
       </div>
       <div class="container">
         <router-view></router-view>
-        <i class="iconfont icon-bangzhu-xian"></i>
+        <i @click="showHelp()" class="iconfont icon-bangzhu-xian"></i>
+        <a href='../../help.html'>sss</a>//TODO 怎么跳转多页面，el怎么找到APP的
       </div>
       <div class="right-foot">
         <a href="https://ip-com.com.cn/default.html">官网：ip-com.com.cn</a>
         <span>| ©2020 深圳市和为顺网络技术有限公司 | 服务热线：400-665-0066</span>
       </div>
     </div>
-    <my-dialog v-show="dialogCfg.show" :dialogCfg = "dialogCfg"></my-dialog>
+    <my-dialog v-show="dialogCfg.show"></my-dialog>
   </div>
 </template>
 
@@ -58,18 +59,23 @@
 
       },
       methods:{
+        showHelp(){
+          
+        }
 
       },
       beforeMount(){
         setSupportLang("cn,en,zh");//不能放在mounted里，必须放在页面dom渲染之前，不然页面会闪，因为这个操作会reload页面。
       },
       mounted() {
+        
         this.$router.push('/');
         B.setTextDomain("translate");//setTextDomain的时候不传lang过去，就会根据cookie里设置的blanguage值来翻译页面。
       }
     }
+
 </script>
 
-<style scoped>
-  @import "../css/frame.css";
+<style scoped lang="less">
+  @import "../css/frame.less";
 </style>

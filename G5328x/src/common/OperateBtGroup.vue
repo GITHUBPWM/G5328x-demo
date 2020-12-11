@@ -1,7 +1,7 @@
 <template>
     <div class="operate-btn">
-        <button @click="$emit('on-custom-comp',{type:'edit',rowData:rowData})"><i class="iconfont icon-bianji2"></i></button>
-        <button @click="$emit('on-custom-comp',{type:'delete',rowData:rowData})"><i class="iconfont icon-shanchu"></i></button>
+        <button v-show="operateBts.indexOf('edit')!==-1" @click="$emit('on-custom-comp',{type:'edit',rowData:rowData})"><i class="iconfont icon-bianji2"></i></button>
+        <button v-show="operateBts.indexOf('delete')!==-1" @click="$emit('on-custom-comp',{type:'delete',rowData:rowData})"><i class="iconfont icon-shanchu"></i></button>
     </div>
 </template>
 <script>
@@ -19,6 +19,7 @@ export default {
     },
 
     computed:{
+        ...mapState(["operateBts"]),
         
         
     },

@@ -1,9 +1,12 @@
 import myVue from "../main";
 const widtha=0;
-
+import index from "../store/index.js"
+import vuex from 'vuex'
 
 export  default {
 
+  
+  //  a : myVue.$store.state.operateBts,
   /*获取重定位过来的父路由的子路由集合*/
    getMenuTabs:function(router,route){
      if(route.redirectedFrom){

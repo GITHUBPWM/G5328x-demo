@@ -11,6 +11,6 @@
     }
 </script>
 
-<style scoped>
-  @import "../css/common.css";
+<style scoped lang="less">
+  @import "../css/common.less";
 </style>

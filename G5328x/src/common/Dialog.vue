@@ -1,10 +1,10 @@
 <template>
   <div class="dialog-mask">
     <div class="dialog-box">
-      <div class="dialog-title">
-        {{dialogCfg.title}}
-        <i @click="cancel()" class="iconfont icon-guanbi"></i>
-      </div>
+      <div class="dialog-title"> {{dialogCfg.title}} <i @click="cancel()" class="iconfont icon-guanbi"></i></div>
+
+      <!-- TODO:复用改成插槽的形式 -->
+      
       <!-- 提示确认框 -->
       <div v-if="dialogCfg.type === 'confirm'" class="confirm-box">
           <div class="dialog-content">确定要删除选中项吗？</div>
@@ -18,13 +18,6 @@
         </div>
       </div>
 
-      <!-- <div v-else-if="dialogCfg.type === 'edit'" class="operate-box">
-        <div v-for="(item,index) in dialogCfg.operateForm" :key="index" class="dialog-group">
-            <label>{{item.title}}:</label>
-            <input/>
-            <span>{{item.msg}}</span>
-        </div>
-      </div> -->
       <div class="dialog-bt-group">
           <button class="btn btn-cancel" @click="cancel()">取消</button>
           <button class="btn btn-title" @click="dialogCfg.handle">确定</button>
@@ -33,12 +26,18 @@
   </div>
 </template>
 <script>
+import { mapState } from 'vuex';
 export default {
-  props: ["dialogCfg"],
+
   data() {
     return {
 
     };
+  },
+
+  computed:{
+    ...mapState(["dialogCfg"]),
+
   },
 
   methods:{
@@ -128,6 +127,8 @@ export default {
     height: 25px;
     width: 250px;
     border: 1px solid rgb(192, 192, 192);
+    padding-left: 10px;
+    padding-right: 10px;
   }
 
   span{

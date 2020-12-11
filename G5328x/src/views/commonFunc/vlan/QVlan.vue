@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="form-button-group">
-      <button class="btn btn-title" @click="addRows()"><i class="iconfont icon-tianjia"></i>添加</button>
+      <button class="btn btn-title" @click="customCompFunc({type:'add'})"><i class="iconfont icon-tianjia"></i>添加</button>
       <button class="btn btn-title" :disabled="selectArr.list.length === 0" :class="{disabled: selectArr.list.length === 0}" @click="customCompFunc({type:'delete'})"><i class="iconfont icon-shanchu"></i></button>
     </div>
     <v-table ref="table" 
@@ -15,9 +15,13 @@
 <script>
 import OperateBtGroup from '../../../common/OperateBtGroup';
 import { mapState, mapMutations } from 'vuex';
-
+import dialog_mix from "../../../js/mixins/dialog_mix";
+import router from '../../../router';
+//TODO :表单验证
     export default {
       name: "QVlan",
+      //通过混入将外部的方法引入，那些方法可以直接访问这里面的data
+      mixins: [ dialog_mix ],
       data(){
         return {
           tableData:{
@@ -67,15 +71,22 @@ import { mapState, mapMutations } from 'vuex';
       },
 
       methods:{
-        ...mapMutations(["setDialogCfg"]),
+        ...mapMutations(["setDialogCfg","setOperateBts"]),
 
         /* 表格处理函数 */
         customCompFunc(options){
+          options.dataUrl = {
+            set:"setQvlanInfo",
+            get:"getQvlanList",
+            del:"delQvlanList"
+          };
           switch(options.type){
             case "selectAll": this.selectAll(options); break;
             case "checkbox":  this.selectOne(options); break;
             case "delete": this.deleteRows(options); break;
-            case "edit": this.editRows(options); break;
+            case "edit": 
+            case "add":
+            this.editOrAddRows(options); break;
           }
         },
 
@@ -96,94 +107,20 @@ import { mapState, mapMutations } from 'vuex';
             }
         },
 
-        deleteRows(options){
-          //TODO:不能直接改变state的状态
-            this.dialogCfg.show = true;
-            this.dialogCfg.title = "";
-            this.dialogCfg.type = "confirm";
-            this.dialogCfg.handle = () =>{
-                  //单行删除或批量删除
-                  let postData = options.rowData || this.selectArr;
-                  this.$axios.post("/goform/delQvlanList",postData).then(()=>{
-                      this.$axios.get("/goform/getQvlanList").then((res)=>{
-                          this.tableData.originData = res.data.list;
-                      });
-                      this.dialogCfg.show = false;
-                      this.selectArr.list = [];
-                  });
-            };
-        },
-
-        editRows(options){
-          this.dialogCfg.show = true;
-          this.dialogCfg.type = "edit";
-          this.dialogCfg.title = "编辑802.1QVLAN";
-          this.dialogCfg.defaultData = options.rowData;
-          this.dialogCfg.operateForm = this.getOperateForm("edit") ;
-          this.dialogCfg.handle = () =>{
-                this.$axios.post("/goform/setQvlanInfo",this.dialogCfg.defaultData).then(()=>{
-                    this.$axios.get("/goform/getQvlanList").then((res)=>{
-                        this.tableData.originData = res.data.list;
-                    });
-                    this.dialogCfg.show = false;
-                });
-          };
-        },
-
-        addRows(){
-          this.dialogCfg.show = true;
-          this.dialogCfg.type = "add";
-          this.dialogCfg.title = "添加802.1QVLAN";
-          this.dialogCfg.defaultData = this.formData;
-          this.dialogCfg.operateForm = this.getOperateForm("add") ;
-          this.dialogCfg.handle = () =>{
-              this.$axios.post("/goform/setQvlanInfo",this.dialogCfg.defaultData).then(()=>{
-                    this.$axios.get("/goform/getQvlanList").then((res)=>{
-                        this.tableData.originData = res.data.list;
-                    });
-                    this.dialogCfg.show = false;
-                });
-          };
-        },
-        
+     
         afterUpdateTable(){
 
         },
-
-        /* 生成操作表单 */ 
-        getOperateForm(type,rowData){
-          let operateForm = [];
-
-          switch(type) {
-            case "add": //表格添加操作需要的字段
-              for(let i=0,len=this.tableData.columns.length; i < len; i++){
-                if(this.tableData.columns[i].title == "操作"){
-                  continue;
-                }
-                operateForm.push(this.tableData.columns[i]);
-              }
-              return operateForm;
-            case "edit": //表格操作需要的字段
-              for(let i=0,len=this.tableData.columns.length; i < len; i++){
-                if(this.tableData.columns[i].title == "操作"){
-                  continue;
-                }
-                operateForm.push(this.tableData.columns[i]);
-              }
-              return operateForm;
-          }
-          
-        }
-
-
 
       },
 
       mounted() {
         this.$axios.get("/goform/getQvlanList").then((res)=>{
           this.tableData.originData = res.data.list;
-        })
+        });
+        this.setOperateBts("edit,delete");
       }
+
 
     }
 </script>
