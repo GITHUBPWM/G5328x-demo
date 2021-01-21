@@ -1,34 +1,28 @@
 <template>
-  <div class="dialog-mask">
+  <div class="dialog-mask" v-show="dialogData.show">
     <div class="dialog-box">
-      <div class="dialog-title"> {{dialogCfg.title}} <i @click="cancel()" class="iconfont icon-guanbi"></i></div>
+      <div class="dialog-title"> {{dialogData.title}} <i @click="$emit('close-dialog')" class="iconfont icon-guanbi"></i></div>
 
-      <!-- TODO:复用改成插槽的形式 -->
-      
       <!-- 提示确认框 -->
-      <div v-if="dialogCfg.type === 'confirm'" class="confirm-box">
+      <div v-if="dialogData.type === 'delete'" class="confirm-box">
           <div class="dialog-content">确定要删除选中项吗？</div>
       </div>
+
       <!-- 添加/编辑信息框 -->
-      <div v-else-if="dialogCfg.type === 'add' || dialogCfg.type === 'edit'" class="operate-box">
-        <div v-for="(item,index) in dialogCfg.operateForm" :key="index" class="dialog-group">
-            <label>{{item.title}}:</label>
-            <input v-model="dialogCfg.defaultData[item.field]"/>
-            <span>{{item.msg}}</span>
-        </div>
+      <div v-else-if="dialogData.type === 'add' || dialogData.type === 'edit'" class="operate-box">
+        <slot></slot>
       </div>
 
       <div class="dialog-bt-group">
-          <button class="btn btn-cancel" @click="cancel()">取消</button>
-          <button class="btn btn-title" @click="dialogCfg.handle">确定</button>
+          <button class="btn btn-cancel" @click="$emit('close-dialog')">取消</button>
+          <button class="btn btn-title" @click="dialogData.handle">确定</button>
       </div>
     </div>
   </div>
 </template>
 <script>
-import { mapState } from 'vuex';
 export default {
-
+  props:["dialogData"],
   data() {
     return {
 
@@ -36,26 +30,22 @@ export default {
   },
 
   computed:{
-    ...mapState(["dialogCfg"]),
 
   },
 
   methods:{
     
-    /* 取消操作 */
-    cancel(){
-      this.dialogCfg.show = false;
-    },
   },
 
   mounted() {
-
+      this.post();
   },
 };
 </script>
 
 <style scoped lang="less">
 @import "../css/common.less";
+
 .dialog-mask {
     position: fixed;
     top: 0;
@@ -67,6 +57,7 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
+
 }
 
 .dialog-box {

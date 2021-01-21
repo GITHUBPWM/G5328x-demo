@@ -9,21 +9,40 @@
         @on-custom-comp="customCompFunc" 
         :callback="afterUpdateTable">
     </v-table>
+    <my-dialog :dialog-data="dialogInfo" @close-dialog="closeDialog">
+      <div v-if="dialogInfo.type=='add' || dialogInfo.type=='edit' ">
+        <div class="dialog-group">
+          <label>VLAN ID:</label>
+          <input v-model="formData.vlanId" :disabled="dialogInfo.type=='edit'"/>
+          <span>（范围：2-4094。添加ID示例：3，5，7或者10-13）</span>
+        </div>
+        <div class="dialog-group">
+          <label>VLAN描述:</label>
+          <input v-model="formData.remark"/>
+          <span>（最大支持32个字符）</span>
+        </div>
+      </div>
+    </my-dialog>
   </div>
 </template>
 
 <script>
 import OperateBtGroup from '../../../common/OperateBtGroup';
+import dialog_mix from "@/js/mixins/dialog_mix";
 import { mapState, mapMutations } from 'vuex';
-import dialog_mix from "../../../js/mixins/dialog_mix";
 import router from '../../../router';
 //TODO :表单验证
     export default {
       name: "QVlan",
       //通过混入将外部的方法引入，那些方法可以直接访问这里面的data
-      mixins: [ dialog_mix ],
+      mixins:[dialog_mix],
       data(){
         return {
+          pageUrl:{
+            set:"setQvlanInfo",
+            get:"getQvlanList",
+            del:"delQvlanList"
+          },
           tableData:{
             key: "qvlan",
             css: "",
@@ -58,7 +77,19 @@ import router from '../../../router';
             list:[]
           },
 
-          formData: {gateway: "",ip: "",ipType: "",mask: "",remark: "",threeLayersEn: 0,vlanId: ""}
+          //编辑、添加的表单
+          formData: {
+            vlanId:"",
+            remark:""
+          },
+
+          //弹窗对象
+          dialogInfo:{
+            show:false,
+            type:"",
+            title:"",
+            handle:""
+          },
         }
       },
 
@@ -67,19 +98,16 @@ import router from '../../../router';
       },
 
       computed:{
-        ...mapState(["dialogCfg"]),
+        
       },
 
       methods:{
-        ...mapMutations(["setDialogCfg","setOperateBts"]),
+        ...mapMutations(["setOperateBts"]),
+
+        
 
         /* 表格处理函数 */
         customCompFunc(options){
-          options.dataUrl = {
-            set:"setQvlanInfo",
-            get:"getQvlanList",
-            del:"delQvlanList"
-          };
           switch(options.type){
             case "selectAll": this.selectAll(options); break;
             case "checkbox":  this.selectOne(options); break;
@@ -90,6 +118,8 @@ import router from '../../../router';
           }
         },
 
+
+
         selectAll(options){
             this.selectArr.list=[];
             for(let i in options.rowsData){
@@ -97,6 +127,7 @@ import router from '../../../router';
             }
         },
 
+        /* 选择表格中的某一行 */
         selectOne(options){
             if (this.selectArr.list.includes(options.rowData)) {
                 this.selectArr.list = this.selectArr.list.filter((elem)=>{
@@ -107,7 +138,23 @@ import router from '../../../router';
             }
         },
 
+        /* 关闭弹窗 */
+        closeDialog(){
+          this.dialogInfo.show = false;
+          for(let i in this.formData){
+            this.formData[i] = "";
+          }
+          if(this.dialogInfo.type == "delete"){
+             this.selectArr.list = [];
+          }
+        },
      
+        initTable(){
+          this.get(this.pageUrl.get,(res)=>{
+            this.tableData.originData = res.data.list;
+          })
+        },
+        
         afterUpdateTable(){
 
         },
@@ -115,13 +162,10 @@ import router from '../../../router';
       },
 
       mounted() {
-        this.$axios.get("/goform/getQvlanList").then((res)=>{
-          this.tableData.originData = res.data.list;
-        });
+        //设置表格中的操作按钮有哪几种
         this.setOperateBts("edit,delete");
+        this.initTable();
       }
-
-
     }
 </script>
 

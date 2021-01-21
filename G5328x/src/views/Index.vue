@@ -31,7 +31,6 @@
         <span>| ©2020 深圳市和为顺网络技术有限公司 | 服务热线：400-665-0066</span>
       </div>
     </div>
-    <my-dialog v-show="dialogCfg.show"></my-dialog>
   </div>
 </template>
 

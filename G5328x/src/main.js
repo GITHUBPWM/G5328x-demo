@@ -7,10 +7,11 @@ import Vuex from 'vuex'
 import store from "./store"
 import common from './js/common'
 import con_config from './js/con_config'
-import axios from 'axios'
 import '@reasy-team/reasy-ui-vue/dist/styles.css';
 import ReasyUIVue from '@reasy-team/reasy-ui-vue';
 import my_plugins from "./js/my_plugins";
+import http from "./js/http";
+
 Vue.use(ReasyUIVue);
 import Help from "./views/help/Help"
 // import less from 'less'
@@ -21,18 +22,15 @@ import Help from "./views/help/Help"
 
 Vue.use(Vuex);
 Vue.use(my_plugins);
+Vue.use(http);
 
 
 
 Vue.config.productionTip = false;
 Vue.prototype.common = common;
 Vue.prototype.con_config = con_config;
-Vue.prototype.$axios = axios;
 
 
-
-axios.defaults.baseURL = "http://192.168.98.17:3010/mock/124";
-axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
 
 
 //可以用这种创建vue实例的方法来达到所有页面使用的组件都是同一个的效果（帮助信息），就不用借助store来传值
