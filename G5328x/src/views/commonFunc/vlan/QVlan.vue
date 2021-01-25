@@ -12,14 +12,14 @@
     <my-dialog :dialog-data="dialogInfo" @close-dialog="closeDialog">
       <div v-if="dialogInfo.type=='add' || dialogInfo.type=='edit' ">
         <div class="dialog-group">
-          <label>VLAN ID:</label>
+          <label>VLAN ID</label>
           <input v-model="formData.vlanId" :disabled="dialogInfo.type=='edit'"/>
-          <span>（范围：2-4094。添加ID示例：3，5，7或者10-13）</span>
+          <span class="span-msg">（范围：2-4094。添加ID示例：3，5，7或者10-13）</span>
         </div>
         <div class="dialog-group">
-          <label>VLAN描述:</label>
+          <label>VLAN描述</label>
           <input v-model="formData.remark"/>
-          <span>（最大支持32个字符）</span>
+          <span class="span-msg">（最大支持32个字符）</span>
         </div>
       </div>
     </my-dialog>
@@ -50,13 +50,11 @@ import router from '../../../router';
             columns: [
               {
                 title: "VLAN ID",
-                field: "vlanId",
-                msg: "（范围：2-4094。添加ID示例：3，5，7或者10-13）"
+                field: "vlanId"
               },
               {
                 title: "VLAN描述",
-                field: "remark",
-                msg: "（最大支持32个字符）"
+                field: "remark"
               },
               {
                 title: "IPv4地址",
@@ -83,13 +81,6 @@ import router from '../../../router';
             remark:""
           },
 
-          //弹窗对象
-          dialogInfo:{
-            show:false,
-            type:"",
-            title:"",
-            handle:""
-          },
         }
       },
 
@@ -105,18 +96,6 @@ import router from '../../../router';
         ...mapMutations(["setOperateBts"]),
 
         
-
-        /* 表格处理函数 */
-        customCompFunc(options){
-          switch(options.type){
-            case "selectAll": this.selectAll(options); break;
-            case "checkbox":  this.selectOne(options); break;
-            case "delete": this.deleteRows(options); break;
-            case "edit": 
-            case "add":
-            this.editOrAddRows(options); break;
-          }
-        },
 
 
 
@@ -138,22 +117,7 @@ import router from '../../../router';
             }
         },
 
-        /* 关闭弹窗 */
-        closeDialog(){
-          this.dialogInfo.show = false;
-          for(let i in this.formData){
-            this.formData[i] = "";
-          }
-          if(this.dialogInfo.type == "delete"){
-             this.selectArr.list = [];
-          }
-        },
-     
-        initTable(){
-          this.get(this.pageUrl.get,(res)=>{
-            this.tableData.originData = res.data.list;
-          })
-        },
+    
         
         afterUpdateTable(){
 

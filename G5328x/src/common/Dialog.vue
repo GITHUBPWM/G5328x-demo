@@ -52,6 +52,7 @@ export default {
     left: 0;
     height: 100%;
     width: 100%;
+    min-width: 800px;
     background-color: rgba(0, 0, 0, 0.3);
     z-index: 999;
     display: flex;
@@ -102,6 +103,8 @@ export default {
 }
 
 .dialog-group{
+  display: flex;
+  align-items: center;
   color: rgb(94, 94, 94);
   padding: 15px 160px;
   font-size: 14px;
@@ -114,19 +117,59 @@ export default {
     margin-right: 20px;
   }
 
-  input{
+  input,select{
+    box-sizing: border-box;
     height: 25px;
     width: 250px;
     border: 1px solid rgb(192, 192, 192);
     padding-left: 10px;
     padding-right: 10px;
-  }
+}
 
-  span{
+  .span-msg{
     display: inline-block;
+    max-width: 500px;
     margin-left: 10px;
     color: grey;
   }
 }
+
+
+@media screen and (max-width: 1200px){
+
+.operate-box {
+  width: 800px;
+}
+
+ .dialog-group{
+  padding: 15px ;
+  .span-msg{
+    max-width: 350px;
+  }
+ }
+
+}
+
+@media screen and (max-width: 800px){
+
+.operate-box {
+  width: 500px;
+}
+
+.dialog-group{
+  padding: 15px 15px 15px 30px;
+  display: block;
+  .span-msg{
+    width: 100%;
+    margin-left: -15px;
+    text-align: center;
+    margin-top: 5px;
+    max-width: 100%;
+  }
+}
+
+}
+
+
 
 </style>

@@ -1,5 +1,6 @@
 <template>
     <div>
+        <!-- TODO:设置 -->
         <div class="form-button-group">
             <button class="btn btn-title" @click="setting()"><i class="iconfont icon-shezhi1"></i>&nbsp;&nbsp;设置</button>
         </div>
@@ -8,6 +9,36 @@
             @on-custom-comp="customCompFunc" 
             :callback="afterUpdateTable">
         </v-table>
+        <my-dialog :dialog-data="dialogInfo" @close-dialog="closeDialog">
+            <div class="dialog-group">
+                <label>端口</label>
+                <span>{{formData.portNum}}</span>
+            </div>
+            <div class="dialog-group">
+                <label>链路类型</label>
+                <select v-model="formData.linkType">
+                    <option value="trunk">Trunk</option>
+                    <option value="access">Access</option>
+                    <option value="hybrid">Hybrid</option>
+                </select>
+            </div>
+            <div class="dialog-group">
+                <label>PVID</label>
+                <input v-model="formData.pvid"/>
+                <span class="span-msg">（范围：1-4094，请填写单个数值）</span>
+            </div>
+            <div class="dialog-group" v-show="formData.linkType == 'hybrid'">
+                <label>Untagged</label>
+                <input v-model="formData.untagged"/>
+                <span class="span-msg">（范围：1-4094，示例3，5，7或10-13，设置前请先创建VLAN ID）</span>
+            </div>
+            <!-- TODO：提示信息过长的媒体查询处理 -->
+            <div class="dialog-group" v-show="formData.linkType !== 'access'">
+                <label>Tagged</label>
+                <input v-model="formData.tagged"/>
+                <span class="span-msg">（范围：1-4094，示例3，5，7或10-13，设置前请先创建VLAN ID）</span>
+            </div>
+        </my-dialog>
     </div>
 </template>
 
@@ -21,6 +52,10 @@ import { mapMutations, mapState } from 'vuex';
         mixins: [ dialog_mix ],
         data(){
             return{
+                pageUrl:{
+                    set:"setPortMemberInfo",
+                    get:"getPortMemberList"
+                },
                 tableData:{
                     key: "member",
                     css: "",
@@ -35,13 +70,11 @@ import { mapMutations, mapState } from 'vuex';
                     },
                     {
                         title: "PVID",
-                        field: "pvid",
-                        msg: "（范围：1-4094，请填写单个数值）"
+                        field: "pvid"
                     },
                     {
                         title: "Tagged",
-                        field: "tagged",
-                        msg: "（范围：1-4094，示例3，5，7或10-13，设置前请先创建VLAN ID）"
+                        field: "tagged"
                     },
                     {
                         title: "Untagged",
@@ -53,7 +86,14 @@ import { mapMutations, mapState } from 'vuex';
                     }
                     ]
                 },
-                operateBt:["edit"],
+                         
+                formData: {
+                    portNum:"",
+                    linkType:"",
+                    pvid:"",
+                    tagged:"",
+                    untagged:""
+                },
             }
         },
 
@@ -64,30 +104,19 @@ import { mapMutations, mapState } from 'vuex';
         methods:{
             ...mapMutations(["setOperateBts"]),
 
-             customCompFunc(options){
-                 options.dataUrl = {
-                     set:"setPortMemberInfo",
-                     get:"getPortMemberList"
-                 }
-                switch(options.type){
-                    case "selectAll": this.selectAll(options); break;
-                    case "checkbox":  this.selectOne(options); break;
-                    case "delete": this.deleteRows(options); break;
-                    case "edit": this.editOrAddRows(options); break;
-                }
-            },
-        
             afterUpdateTable(){
+
+            },
+
+            setting(){
 
             },
 
         },
 
         mounted(){
-            this.$axios.get("/goform/getPortMemberList").then((res)=>{
-                this.tableData.originData = res.data.list;
-            })
             this.setOperateBts("edit");
+            this.initTable();
         }
     }
 </script>
