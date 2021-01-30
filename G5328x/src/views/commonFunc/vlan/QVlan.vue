@@ -9,7 +9,7 @@
         @on-custom-comp="customCompFunc" 
         :callback="afterUpdateTable">
     </v-table>
-    <my-dialog :dialog-data="dialogInfo" @close-dialog="closeDialog">
+    <my-dialog :dialog-data="dialogInfo">
       <div v-if="dialogInfo.type=='add' || dialogInfo.type=='edit' ">
         <div class="dialog-group">
           <label>VLAN ID</label>
@@ -95,8 +95,40 @@ import router from '../../../router';
       methods:{
         ...mapMutations(["setOperateBts"]),
 
+        //TODO:一样的,看如何提取公共的
+        edit(options){
+          for(let key in options.rowData){
+            this.formData[key] = options.rowData[key];
+          }
+          this.dialogInfo.handle = ()=>{
+            this.post(this.pageUrl.set,this.formData,()=>{
+                this.initTable();
+                this.dialogInfo.cancel();
+              })
+          }
+          this.dialogInfo.cancel = ()=>{
+            for(let i in this.formData){
+              this.formData[i] = "";
+            }
+            this.dialogInfo.show = false;
+          }
+        },
         
-
+        //TODO:跟上面edit有重复的部分
+        addRow(){
+          this.dialogInfo.handle = ()=>{
+            this.post(this.pageUrl.set,this.formData,()=>{
+                this.initTable();
+                this.dialogInfo.cancel();
+              })
+          }
+          this.dialogInfo.cancel = ()=>{
+            for(let i in this.formData){
+              this.formData[i] = "";
+            }
+            this.dialogInfo.show = false;
+          }
+        },
 
 
         selectAll(options){

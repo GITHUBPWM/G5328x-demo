@@ -24,7 +24,7 @@
       <div class="container">
         <router-view></router-view>
         <i @click="showHelp()" class="iconfont icon-bangzhu-xian"></i>
-        <a href='../../help.html'>sss</a>//TODO 怎么跳转多页面，el怎么找到APP的
+        <!-- <a href='../../help.html'>sss</a>//TODO 怎么跳转多页面，el怎么找到APP的 -->
       </div>
       <div class="right-foot">
         <a href="https://ip-com.com.cn/default.html">官网：ip-com.com.cn</a>

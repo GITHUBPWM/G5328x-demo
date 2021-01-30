@@ -1,7 +1,7 @@
 <template>
   <div class="dialog-mask" v-show="dialogData.show">
     <div class="dialog-box">
-      <div class="dialog-title"> {{dialogData.title}} <i @click="$emit('close-dialog')" class="iconfont icon-guanbi"></i></div>
+      <div class="dialog-title"> {{dialogData.title}} <i @click="dialogData.cancel" class="iconfont icon-guanbi"></i></div>
 
       <!-- 提示确认框 -->
       <div v-if="dialogData.type === 'delete'" class="confirm-box">
@@ -9,12 +9,12 @@
       </div>
 
       <!-- 添加/编辑信息框 -->
-      <div v-else-if="dialogData.type === 'add' || dialogData.type === 'edit'" class="operate-box">
+      <div v-else-if="dialogData.type === 'add' || dialogData.type === 'edit' || dialogData.type === 'setting' " class="operate-box">
         <slot></slot>
       </div>
 
       <div class="dialog-bt-group">
-          <button class="btn btn-cancel" @click="$emit('close-dialog')">取消</button>
+          <button class="btn btn-cancel" @click="dialogData.cancel">取消</button>
           <button class="btn btn-title" @click="dialogData.handle">确定</button>
       </div>
     </div>
@@ -119,9 +119,9 @@ export default {
 
   input,select{
     box-sizing: border-box;
-    height: 25px;
+    height: 30px;
     width: 250px;
-    border: 1px solid rgb(192, 192, 192);
+    border: 1px solid rgb(223, 223, 223);
     padding-left: 10px;
     padding-right: 10px;
 }
