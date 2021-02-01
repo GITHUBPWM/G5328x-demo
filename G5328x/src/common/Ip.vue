@@ -1,7 +1,7 @@
 <template>
   <div class="ip-div" ref="ipBox" :class="{'err-box':err}"> 
     <div v-for="i in 4" :key="i" style="display:inline">
-      <input :ref="'ip'+i" type="text" v-model="ipArr[i-1]" @keyup="keyup(i)" maxlength="3" @change="changeIp"><span v-if="i!==4">.</span>
+      <input :ref="'ip'+i" type="text" v-model="ipArr[i-1]" @keyup="keyup(i)" maxlength="3" @change="$emit('input',connectIp)"><span v-if="i!==4">.</span>
     </div>
     <div v-if="err" class="input-err">{{err}}</div>
   </div>
@@ -24,6 +24,10 @@ export default {
     //直接监听对象监听的是地址，里面的内容变化获取不到，而这样每次都是新返回的一个对象，就像在监听一个普通变量的变化一样，所以能取到新旧值
     ipStr() {
       return JSON.parse(JSON.stringify(this.ipArr));
+    },
+
+    connectIp() {
+      return this.ipArr[0]+'.'+this.ipArr[1]+'.'+this.ipArr[2]+'.'+this.ipArr[3];
     }
   },
 
@@ -43,6 +47,10 @@ export default {
       },
       deep:true
     } ,
+
+    ip:function(){
+      this.splitIp()
+    }
   },
 
   methods:{
@@ -62,20 +70,21 @@ export default {
       }
     },
 
-    changeIp(){
-      this.$emit("input",this.ipArr[0]+'.'+this.ipArr[1]+'.'+this.ipArr[2]+'.'+this.ipArr[3]);
-    }
+    splitIp(){
+      if(this.ip){
+        for(let i=0; i < this.ip.split(".").length;i++){
+          this.ipArr[i] = this.ip.split(".")[i];
+        }
+      }
+    },
+
   },
 
 
 
 
   mounted(){
-    if(this.ip){
-      for(let i=0; i < this.ip.split(".").length;i++){
-        this.ipArr[i] = this.ip.split(".")[i];
-      }
-    }
+    this.splitIp();
 
     // //鼠标点出ip输入框时，进行其他数据验证
     // document.addEventListener("click",(e)=>{

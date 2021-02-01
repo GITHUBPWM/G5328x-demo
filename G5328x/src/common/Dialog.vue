@@ -117,14 +117,19 @@ export default {
     margin-right: 20px;
   }
 
-  input,select{
+  input,select,.right-content{
+    display: inline-block;
     box-sizing: border-box;
     height: 30px;
     width: 250px;
     border: 1px solid rgb(223, 223, 223);
     padding-left: 10px;
     padding-right: 10px;
-}
+  }
+
+  .right-content{
+    width: 180px;
+  }
 
   .span-msg{
     display: inline-block;

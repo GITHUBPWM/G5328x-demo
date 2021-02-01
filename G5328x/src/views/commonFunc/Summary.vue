@@ -63,7 +63,7 @@
       </div>
     </div>
     <div style="clear:both"></div>
-    <my-dialog :dialog-data="dialogInfo">
+    <my-dialog :dialog-data="dialogInfo" >
       <div class="dialog-group">
         <label>设备名称</label>
         <input v-model="formData.deviceName"/>
@@ -81,11 +81,11 @@
       </div>
       <div class="dialog-group" v-show="formData.ipType=='manual'">
         <label>IP地址/掩码</label>
-        <my-ip v-model="formData.ip"></my-ip>
+        <my-ip v-model="formData.ip" class="right-content"></my-ip>
       </div>
       <div class="dialog-group" v-show="formData.ipType=='manual'">
         <label>网关IP地址</label>
-        <div></div>
+        <my-ip v-model="formData.mask" class="right-content"></my-ip>
       </div>
       <div class="dialog-group">
         <label>DNS分配方式</label>
@@ -96,9 +96,11 @@
       </div>
       <div class="dialog-group" v-show="formData.dnsType=='manual'">
         <label>首选DNS服务器</label>
+        <my-ip v-model="formData.preferredDNS" class="right-content"></my-ip>
       </div>
       <div class="dialog-group" v-show="formData.dnsType=='manual'">
         <label>备选DNS服务器</label>
+        <my-ip v-model="formData.alternateDNS" class="right-content"></my-ip>
        
       </div>
     </my-dialog>
@@ -169,7 +171,6 @@
             this.dialogInfo.show = false;
           }
           this.dialogInfo.cancel = ()=>{
-
             for(let key in this.devInfo){
               this.$set(this.formData, key, this.devInfo[key])
             }
