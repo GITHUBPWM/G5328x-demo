@@ -35,11 +35,9 @@
           <div class="use-title">运行时间</div>
           <div class="use-info">30455天 3分 53秒</div>
         </div>
-        <div class="use-circle">
-          
-        </div>
-        <div class="use-circle">
-
+        <div class="use-percent">
+          <my-circle :usePercent="parseInt(formData.cpuPercent.split('%')[0])" use-name="CPU" :use-num="formData.cpuPercent"></my-circle>
+          <my-circle :usePercent="parseInt(formData.memoryPercent.split('%')[0])" use-name="内存" :use-num="formData.memoryPercent" class="second-cr"></my-circle>
         </div>
       </div>
     </div>
@@ -81,15 +79,16 @@
       </div>
       <div class="dialog-group" v-show="formData.ipType=='manual'">
         <label>IP地址/掩码</label>
-        <my-ip v-model="formData.ip" class="right-content"></my-ip>
+        <my-ip v-model="formData.ip" class="right-content"></my-ip>&nbsp;&nbsp;/&nbsp;&nbsp;
+        <my-ip v-model="formData.mask" class="right-content"></my-ip>
       </div>
       <div class="dialog-group" v-show="formData.ipType=='manual'">
         <label>网关IP地址</label>
-        <my-ip v-model="formData.mask" class="right-content"></my-ip>
+        <my-ip v-model="formData.gateway" class="right-content"></my-ip>
       </div>
       <div class="dialog-group">
         <label>DNS分配方式</label>
-        <select v-model="formData.dnsType" :class="{disabled:formData.ipType=='manual'}">
+        <select v-model="formData.dnsType" :disabled="formData.ipType=='manual'">
           <option value="auto">自动获取</option>
           <option value="manual">手动分配</option>
         </select>
@@ -101,7 +100,6 @@
       <div class="dialog-group" v-show="formData.dnsType=='manual'">
         <label>备选DNS服务器</label>
         <my-ip v-model="formData.alternateDNS" class="right-content"></my-ip>
-       
       </div>
     </my-dialog>
   </div>
@@ -141,13 +139,26 @@
           ],
           port:[],
           devInfo:{},
-          formData:{},
+          formData:{cpuPercent:"0",memoryPercent:"0"},
+          percentColor:{
+            blue:["rgb(26, 143, 255)","#ddeeff"],
+            red:["rgb(255, 96, 96)","#ffe7e7"],
+            yellow:["rgb(254, 202, 87)","#fff7e6"]
+          },
+          timer:""
         }
       },
 
 
       computed:{
+      },
 
+      watch:{
+        'formData.ipType':function(newVal){
+          if(newVal == 'manual'){
+            this.formData.dnsType = 'manual'
+          }
+        },
 
       },
 
@@ -160,7 +171,6 @@
           }
         },
 
-
         editDevInfo(){
           this.dialogInfo.type = "edit";
           this.dialogInfo.title = "设备信息";
@@ -169,20 +179,30 @@
               this.get("getSysStatus",this.initSum);
             });
             this.dialogInfo.show = false;
+            this.timer = setInterval(()=>{
+              this.get("getSysStatus",this.initSum);
+            },4000)
           }
           this.dialogInfo.cancel = ()=>{
             for(let key in this.devInfo){
               this.$set(this.formData, key, this.devInfo[key])
             }
             this.dialogInfo.show = false;
+            this.timer = setInterval(()=>{
+              this.get("getSysStatus",this.initSum);
+            },4000)
           }
           this.dialogInfo.show = true;
+          clearInterval(this.timer)
         },
 
       },
       
       mounted() {
         this.get("getSysStatus",this.initSum);
+        this.timer = setInterval(()=>{
+          this.get("getSysStatus",this.initSum);
+        },4000)
       }
 
     }
@@ -261,8 +281,6 @@
     }
   }
 }
-
-
 .port2List{
   margin-top: 80px;
   .port2Set{
@@ -326,4 +344,12 @@
   font-size: 18px;
   color: rgba(0, 0, 0, 0.85);
 }
+.use-percent{
+  margin-left: 40px;
+  display: flex;
+  align-items: center;
+
+}
+
+
 </style>
