@@ -1,12 +1,4 @@
-@font-face {
-  font-family: 'iconfont';  /* project id 2056052 */
-  src: url('//at.alicdn.com/t/font_2056052_e3wuda12yao.eot');
-  src: url('//at.alicdn.com/t/font_2056052_e3wuda12yao.eot?#iefix') format('embedded-opentype'),
-  url('//at.alicdn.com/t/font_2056052_e3wuda12yao.woff2') format('woff2'),
-  url('//at.alicdn.com/t/font_2056052_e3wuda12yao.woff') format('woff'),
-  url('//at.alicdn.com/t/font_2056052_e3wuda12yao.ttf') format('truetype'),
-  url('//at.alicdn.com/t/font_2056052_e3wuda12yao.svg#iconfont') format('svg');
-}
+
 .iconfont{
   font-family:"iconfont" !important;
   font-style:normal;
@@ -14,8 +6,6 @@
   -webkit-text-stroke-width: 0.2px;
   -moz-osx-font-smoothing: grayscale;
 }
-
-
 
 .dev-list-box{
   position: relative;
@@ -101,8 +91,98 @@
   -o-transform:rotate(180deg); 	/* Opera */
 }
 
+.flex-row-center{
+  display: flex;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  align-items:center;
+}
+//样式继承，也可写成混合形式，直接在样式里写上：.flex-row-center()即可
+.status-header{  
+  &:extend(.flex-row-center);
 
-.status-header{
+  position: relative;
   height: 40px;
   background: rgba(0, 0, 0, 0.04);
+  color: rgba(0, 0, 0, 0.65);
+  font-size: 14px;
+  padding-left: 20px;
+
+  .on-stu::before{
+    content: "";
+    display: inline-block;
+    height: 10px;
+    width: 10px;
+    margin-right: 5px;
+    background-color: rgb(132, 192, 42);
+    border-radius: 50%;
+  }
+  .off-stu::before{
+    content: "";
+    display: inline-block;
+    height: 10px;
+    width: 10px;
+    margin-right: 5px;
+    margin-left: 10px;
+    background-color: rgb(119, 119, 119);
+    border-radius: 50%;
+  }
+  input{
+    background-color: red;
+    display: block;
+    margin-left: 15px;
+    margin-right: 5px;
+  }
+  .right-bt{
+    .flex-row-center();
+    position: absolute;
+    right: 20px;
+    top:8px
+  }
+
+  .icon-before(@code){
+    content: @code;
+    font-size: 22px;
+    color: #D82228;
+    margin-left: 15px;
+  }
+
+  // less混合传参
+  .refresh-stu{
+    .iconfont();
+    &::before{
+      .icon-before("\e659");
+      display: inline-block;
+      vertical-align: middle;
+    }
+  
+  }
+  .save-stu{
+    .iconfont();
+    &::before{
+      .icon-before("\e67a");
+      display: inline-block;
+      vertical-align: middle;
+    }
+  }
+  .delete-off{
+    .iconfont();
+    &::before{
+      .icon-before("\e69f");
+      display: inline-block;
+      vertical-align: middle;
+    }
+  }
+}
+
+.status-canvas{
+  height: calc(100% - 40px);
+
+  #mountNode{
+    height: 100%;
+    width: 100%;
+  }
+
 }
